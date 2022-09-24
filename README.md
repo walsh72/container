@@ -1,5 +1,3 @@
 # container
-> docker build -t kali-mod:16jul
-> docker build -t walsh72/main:kali-Grayhat_$(date +%d%b%H%Mhrs) .
-> docker run -it -v /Users/agellen/Share/code/docker:/home kali-mod:16jul
-> docker run -it -v ~/Share:/home kali-mod:16jul
+> docker build -t walsh72/main:ubuntu-net_$(date +%d%b%H%Mhrs) .
+> docker run -it -v /Users/agellen/Share/:/home walsh72/main:ubuntu-net_

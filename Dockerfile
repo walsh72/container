@@ -1,14 +1,22 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
-# add normal user
-RUN apk add --no-cache sudo
-RUN addgroup aron && adduser -H -D -G aron aron && adduser aron wheel
+RUN apt-get update && apt-get upgrade -y
+
+# create normal user, add to sudoers
+RUN apt install sudo
+RUN useradd -s /bin/bash -d /home/null null && groupadd wheel && usermod -a -G wheel null
 RUN echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
-RUN echo aron:pw | chpasswd
+# change passwd
+RUN echo null:pw | chpasswd
 
-# add cpp packages
-RUN apk add --no-cache g++ gdb
+RUN apt install -y vim-tiny wget weechat screen
+RUN apt install -y tor proxychains
+RUN echo 'quiet_mode' >> /etc/proxychains.conf
 
-USER aron
-WORKDIR /home/
-CMD /bin/sh
+USER null 
+WORKDIR /home/null
+CMD /bin/bash
+
+COPY ./screenrc /home/null/.screenrc
+COPY ./var /home/null/.var
+RUN echo 'source /home/null/.var' >> /home/null/.bashrc 
