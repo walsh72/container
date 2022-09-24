@@ -1,20 +1,14 @@
-FROM kalilinux/kali-rolling:latest
+FROM alpine:latest
 
-RUN apt update && apt upgrade -y
+# add normal user
+RUN apk add --no-cache sudo
+RUN addgroup aron && adduser -H -D -G aron aron && adduser aron wheel
+RUN echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
+RUN echo aron:pw | chpasswd
 
-#install packages for low level programming
-RUN apt-get install -y gcc gdb binutils nasm strace ltrace checksec patchelf ropper
+# add cpp packages
+RUN apk add --no-cache g++ gdb
 
-#install python3
-RUN apt-get install -y python3
-
-#install g++
-RUN apt-get install -y g++
-
-#run as non-root
-#RUN groupadd -r aron && useradd -g aron aron
-#USER aron
-
+USER aron
 WORKDIR /home/
-
-CMD /bin/bash
+CMD /bin/sh
