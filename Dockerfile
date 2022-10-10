@@ -1,14 +1,21 @@
-FROM alpine:latest
+FROM kalilinux/kali-rolling:latest
 
-# add normal user
-RUN apk add --no-cache sudo 
-RUN addgroup aron && adduser -H -D -G aron aron && adduser aron wheel
-RUN echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
-RUN echo aron:pw | chpasswd
+RUN apt-get update && apt-get upgrade -y
 
-# add cpp packages
-RUN apk add --no-cache g++ gdb
+#install basic packages
+#RUN apt install -y vim screen wget
 
-USER aron
-WORKDIR /home/
-CMD /bin/sh
+#install packages for grayhat
+RUN apt-get install -y gcc gdb binutils nasm strace ltrace checksec patchelf ropper
+
+#for programming
+RUN apt install -y g++ gdb
+RUN apt install -y python3
+
+
+#environment
+COPY ./screenrc /root/.screenrc
+COPY ./var /root/.var
+COPY ./vimrc /root/.vimrc
+RUN echo 'source /root/.var' >> /root/.bashrc
+
