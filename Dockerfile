@@ -9,11 +9,7 @@ RUN echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
 # change passwd
 RUN echo null:pw | chpasswd
 
-#install basic tools
-RUN apt install -y vim-tiny screen wget 
-
-#install communication tools
-RUN apt install -y weechat irssi
+RUN apt install -y vim-tiny wget weechat screen
 RUN apt install -y tor proxychains
 RUN echo 'quiet_mode' >> /etc/proxychains.conf
 
