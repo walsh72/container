@@ -1,12 +1,12 @@
 FROM kalilinux/kali-rolling:latest
 
-RUN apt-get update && apt-get upgrade -y
+RUN apt update 
 
 #install basic packages
 #RUN apt install -y vim screen wget
 
 #install packages for grayhat
-RUN apt-get install -y gcc gdb binutils nasm strace ltrace checksec patchelf ropper
+RUN apt install -y gcc gdb binutils nasm strace ltrace checksec patchelf ropper
 
 #for programming
 RUN apt install -y g++ gdb

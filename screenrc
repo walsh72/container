@@ -1,0 +1,27 @@
+escape ^Gg
+defscrollback 200000
+startup_message off
+nonblock on
+msgwait 1
+
+bindkey -k F1 prev
+bindkey -k F2 next
+bindkey -k k9 focus
+bindkey -k k8 copy
+bind '/' eval "scrollback 0" "scrollback 200000"
+bind 'o' eval split focus windowlist
+bind 'O' eval "split -v" focus windowlist
+
+hardstatus on
+hardstatus alwayslastline
+#hardstatus alwaysfirstline
+hardstatus string '%{= kW} %= %{=W}%?%-w%?%{W}%n@%t%{W}%?%+w%?%= %{bW} %D %d%M %{bW}%c '
+
+# bsd
+#hardstatus string '%{= kG} %= %{= W}%?%-w%?[%{W}%n %f%t]%{W}%?%+w%?%= %{W} %D %d%M %{W}%c '
+
+screen -t bash
+screen -t bash
+screen -t bash
+select 0
+
