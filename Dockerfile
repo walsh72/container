@@ -3,7 +3,7 @@ FROM kalilinux/kali-rolling:latest
 RUN apt update 
 
 #install basic packages
-#RUN apt install -y vim screen wget
+RUN apt install -y vim screen 
 
 #install packages for grayhat
 RUN apt install -y gcc gdb binutils nasm strace ltrace checksec patchelf ropper
