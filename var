@@ -1,2 +1,7 @@
+alias var='vi $HOME/.var && source $HOME/.var'
+
+# mount -t fuse.vmhgfs-fuse .host:/ /mnt/ -o allow_other
+
 set -o vi
 alias sc='screen -U -d -R'
+alias root='sudo zsh'
