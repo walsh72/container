@@ -5,3 +5,5 @@ alias var='vi $HOME/.var && source $HOME/.var'
 set -o vi
 alias sc='screen -U -d -R'
 alias root='sudo zsh'
+
+alias goshr='cd /mnt && ls -la'
